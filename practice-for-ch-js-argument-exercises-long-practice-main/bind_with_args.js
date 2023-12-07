@@ -43,12 +43,22 @@ class Cat {
   // Pavlov says meow to me!
   // true
 
-  Function.prototype.myBind = function(ctx, ...args) {
-    // this.myBind (cArgs is what we want to bind to)
-    return function(...cArgs) {
-        return this.apply(ctx, ...args.concat(cArgs)); 
+  Function.prototype.myBind = function () {
+    let args = Array.from(arguments)
+    let that = this; 
+
+    return function () {
+        let allArgs = args.concat(Array.from(arguments))
+        return that.apply(allArgs[0], allArgs.slice(1));
     }
-};
+  };
+
+//   Function.prototype.myBind = function(ctx, ...args) {
+//     // this.myBind (cArgs is what we want to bind to)
+//     return function(...cArgs) {
+//         return this.apply(ctx, ...args.concat(cArgs)); 
+//     }
+// };
 
 // Function.prototype.myBind = function(ctx, ...bArgs) {
 //     // ctx === instance of clock
