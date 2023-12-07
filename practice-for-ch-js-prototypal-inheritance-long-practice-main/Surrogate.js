@@ -5,3 +5,5 @@ Function.prototype.inherits = function(Parent){
     this.prototype.constructor = this;
 };
 
+// child.inherits(Parent)
+// this.inherits(Parent)
